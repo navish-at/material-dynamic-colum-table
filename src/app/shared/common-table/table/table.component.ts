@@ -6,36 +6,16 @@ import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { SelectionModel } from '@angular/cdk/collections';
-
-
-
-// export interface data {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
-
-
+import { TableButtonAction } from '../../models/tableButtonAction';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-// export class TableComponent implements OnInit, AfterViewInit {
-export class TableComponent implements OnInit {
-  // @Input() data: any = [];
-  // @Input() showPagination: boolean = false;
-  // @Input() showEdit:boolean = false;
-  // @Input() showDelete: boolean =  false;
-  // @Input() selectWeight: boolean = false;
-  // @Input() selectName: boolean =  false;
-  // @Input() searchData: boolean = false;
-  // @Input() nameSelect:any = [];
-  // @Input() name:any;
-  // @Input() weight:string = '';
-  // dataSource:any;
-  // ----------------------------
+export class TableComponent implements OnInit, AfterViewInit {
+
+  @Input() showPagination: boolean = false;
+  @Input() showSearch: boolean = false;
   dataSource:any;
   selection = new SelectionModel<any>(true, []);
   displayedColumns: string[] = [];
@@ -43,7 +23,9 @@ export class TableComponent implements OnInit {
   value: string ='';
   @Input() columns: any= [];
   @Input() tableData: any = [];
+  // @Input() editButton:boolean = false;
   @ViewChild(MatSort, { static: true }) sort:any= MatSort;
+  @Output() action: EventEmitter<TableButtonAction> = new EventEmitter<TableButtonAction>()
   @ViewChild(MatPaginator, { static: true }) paginator:any= MatPaginator;
 
   // ----------------------------
@@ -57,20 +39,35 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // console.log(this.editButton);
+    
     // set table columns
     this.displayedColumns = this.displayedColumns.concat(this.columns.map((x:any) => x.columnDef)); 
+
+     // add adction
+     this.displayedColumns.push("action");
 
     // add paginator, sorting and filter
     this.dataSource =  new MatTableDataSource<any>(this.tableData);
 
     // paginator
+    console.log(this.dataSource.paginator);
     this.dataSource.paginator = this.paginator;
+    console.log(this.dataSource.paginator);
+
+    console.log(this.paginator);
+  
   }
+
+  onTableAction(e: any): void {
+    console.log(e);
+    this.action.emit(e)
+  }
+  
+
 
   // for sorting
   announceSortChange(sortState: Sort) {
-    console.log(sortState);
-    
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
       console.log(this._liveAnnouncer);
@@ -79,6 +76,13 @@ export class TableComponent implements OnInit {
     }
   }
 
+  // for filter
+  applyFilter(e: Event) {
+    const filterValue = (e.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
+  
   // Update 
   // update(e:any){
   //   console.log(e)
@@ -114,14 +118,6 @@ export class TableComponent implements OnInit {
   // setWeight(e:any){
   //   this.weight = e.target.innerHTML;
   //   console.log(this.weight);
-  // }
-
-  // --------------
-  applyFilter(e: Event) {
-    const filterValue = (e.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
-    console.log(this.dataSource)
-  }
-  // --------------
+  // }  
 
 }

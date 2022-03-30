@@ -8,6 +8,7 @@ export class TestComponent implements OnInit {
 data:any = [];
 nameSelect:any = [];
 dataEmployee:any=[];
+editButton:boolean = true;
 columns = [ 
   { columnDef: 'name', header: 'Name' },
   { columnDef: 'company', header: 'Company' },
@@ -18,45 +19,84 @@ columns = [
 
   ngOnInit(): void {
     this.dataEmployee = [
-      {
-        "name": "a emp",
-        "company": "z",
-        "city": "ab",
-        "phone": "11"
+     {
+        "name": "f mep",
+        "company": "u",
+        "city": "ij",
+        "phone": "6"
       },
       {
-        "name": "b emp",
-        "company": "y",
-        "city": "bc",
-        "phone": "10"
+        "name": "g mep",
+        "company": "t",
+        "city": "kl",
+        "phone": "5"
       },
       {
-        "name": "c mep",
-        "company": "x",
-        "city": "cd",
-        "phone": "9"
-      },
-      {
-        "name": "d mep",
-        "company": "w",
-        "city": "ef",
-        "phone": "8"
+        "name": "h mep",
+        "company": "s",
+        "city": "mn",
+        "phone": "4"
       },{
-        "name": "e mep",
-        "company": "v",
-        "city": "gh",
-        "phone": "7"
+        "name": "i mep",
+        "company": "r",
+        "city": "op",
+        "phone": "3"
+      },{
+        "name": "j mep",
+        "company": "q",
+        "city": "pq",
+        "phone": "2"
+      },{
+        "name": "k mep",
+        "company": "p",
+        "city": "rs",
+        "phone": "1"
+      },
+      {
+        "name": "f mep",
+        "company": "u",
+        "city": "ij",
+        "phone": "6"
+      },
+      {
+        "name": "g mep",
+        "company": "t",
+        "city": "kl",
+        "phone": "5"
+      },
+      {
+        "name": "h mep",
+        "company": "s",
+        "city": "mn",
+        "phone": "4"
+      },{
+        "name": "i mep",
+        "company": "r",
+        "city": "op",
+        "phone": "3"
+      },{
+        "name": "j mep",
+        "company": "q",
+        "city": "pq",
+        "phone": "2"
+      },{
+        "name": "k mep",
+        "company": "p",
+        "city": "rs",
+        "phone": "1"
       },{
         "name": "f mep",
         "company": "u",
         "city": "ij",
         "phone": "6"
-      },{
+      },
+      {
         "name": "g mep",
         "company": "t",
         "city": "kl",
         "phone": "5"
-      },{
+      },
+      {
         "name": "h mep",
         "company": "s",
         "city": "mn",
@@ -78,6 +118,10 @@ columns = [
         "phone": "1"
       }
     ];
+  }
+
+  onTableAction(event:any) {
+    console.log('event', event)
   }
 
  

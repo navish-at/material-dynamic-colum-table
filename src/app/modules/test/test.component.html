@@ -1,17 +1,11 @@
-<!-- <app-table 
- [data]="data"
- [showPagination]="true" 
- [showEdit]="true" 
- [showDelete]="true"
- [searchData]="true"
- [selectWeight]="true"
- [selectName]="true"
- [nameSelect]="nameSelect"
- ></app-table> -->
+
 <button class="btn" [routerLink]="['/b']" routerLinkActive="router-link-active" >
   test
 </button>
  <app-table
+ (action)="onTableAction($event)"
   [tableData]="dataEmployee" 
+  [showPagination]="true"
+  [showSearch]="true"
   [columns]="columns">
 </app-table>

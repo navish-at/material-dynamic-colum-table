@@ -3,18 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { TableComponent } from './table/table.component';
 import { MaterialModule } from '../material/material.module';
+import { ActionsButtonComponent } from './components/actions-button/actions-button.component';
 
 
 @NgModule({
   declarations: [
-    TableComponent
+    TableComponent,
+    ActionsButtonComponent
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
   ],
   exports: [
-    TableComponent
+    TableComponent,
+    ActionsButtonComponent
   ]
 })
 export class CommonTableModule { }
