@@ -4,9 +4,9 @@ import { TableButtonAction } from 'src/app/shared/models/tableButtonAction';
 import { TableConsts } from './conts/table';
 
 @Component({
-  selector: '[app-actions-button]',
-  templateUrl: './actions-button.component.html',
-  styleUrls: ['./actions-button.component.scss']
+  selector: '[app-actions-items]',
+  templateUrl: './actions-items.component.html',
+  styleUrls: ['./actions-items.component.scss']
 })
 export class ActionsItemsComponent implements OnInit {
 

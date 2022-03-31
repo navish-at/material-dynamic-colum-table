@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { TableComponent } from './table/table.component';
 import { MaterialModule } from './material.module';
-import { ActionsItemsComponent } from './components/actions-button/actions-button.component';
-
+import { ActionsItemsComponent } from './components/actions-button/actions-items.component';
 
 @NgModule({
   declarations: [

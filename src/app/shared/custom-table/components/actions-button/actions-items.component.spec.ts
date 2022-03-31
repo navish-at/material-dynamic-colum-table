@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ActionsItemsComponent } from './actions-button.component';
+import { ActionsItemsComponent } from './actions-items.component';
 
 describe('ActionsItemsComponent', () => {
   let component: ActionsItemsComponent;
