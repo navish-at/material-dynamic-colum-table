@@ -13,20 +13,22 @@ import { TableButtonAction } from "./const/tableButtonAction";
   styleUrls: ["./table.component.scss"],
 })
 export class TableComponent implements OnInit, AfterViewInit {
-  obj:any ={};
+  obj: any = {};
   @Input() showPagination: boolean = false;
   @Input() showSearch: boolean = false;
   @Input() columns: any = [];
   @Input() tableData: any = [];
-  @ViewChild(MatSort, { static: true }) sort: any = MatSort;
   @Output() action: EventEmitter<TableButtonAction> =
     new EventEmitter<TableButtonAction>();
-  @ViewChild(MatPaginator, { static: true }) paginator: any = MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: any = MatSort;
+  @ViewChild(MatPaginator) set matPaginator(paginator: MatPaginator) {
+    this.dataSource.paginator = paginator;
+  }
   dataSource: any;
   selection = new SelectionModel<any>(true, []);
   displayedColumns: string[] = [];
   value: string = "";
-  
+
   constructor(private _liveAnnouncer: LiveAnnouncer) {}
 
   ngOnInit(): void {
@@ -41,8 +43,6 @@ export class TableComponent implements OnInit, AfterViewInit {
     // For pagination, sorting and filter
     this.dataSource = new MatTableDataSource<any>(this.tableData);
 
-    // Paginator
-    this.dataSource.paginator = this.paginator;
   }
 
   ngAfterViewInit() {
@@ -50,38 +50,38 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   // Get value of action element(button)
-  onTableAction(e: any, data:any): void {   
-    // Edit 
-    if(e.name == 'edit'){
-      this.obj = {event: e, data: data};
-      this.action.emit(this.obj);  
+  onTableAction(e: any, data: any): void {
+    // Edit
+    if (e.name == "edit") {
+      this.obj = { event: e, data: data };
+      this.action.emit(this.obj);
     }
-    // Delete 
-    else if(e.name == 'delete'){
+    // Delete
+    else if (e.name == "delete") {
       Swal.fire({
-        title: 'Are you sure?',
-        icon: 'warning',
-        cancelButtonColor: '#d33',
+        title: "Are you sure?",
+        icon: "warning",
+        cancelButtonColor: "#d33",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete it!",
       }).then((result) => {
-          if (result.isConfirmed) {
-            this.obj = {event: e, data: data};
-            this.action.emit(this.obj); 
-          }
-        }) 
+        if (result.isConfirmed) {
+          this.obj = { event: e, data: data };
+          this.action.emit(this.obj);
+        }
+      });
     }
     // View
-    else if(e.name == 'view'){
-      this.obj = {event: e, data: data};
-            this.action.emit(this.obj); 
+    else if (e.name == "view") {
+      this.obj = { event: e, data: data };
+      this.action.emit(this.obj);
     }
-  };
+  }
 
   // For filter
   applyFilter(e: Event) {
     const filterValue = (e.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
-  };
+  }
 }

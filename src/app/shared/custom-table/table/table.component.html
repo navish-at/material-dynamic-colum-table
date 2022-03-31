@@ -47,10 +47,12 @@
 
 
 <!-- Pagination -->
-<mat-paginator
-  [length]="18"
-  [pageSize]="10"
-  [pageSizeOptions]="[5, 10, 25, 100]"
+<ng-container *ngIf="showPagination">
+  <mat-paginator
+  [length]="100"
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 15]"
   aria-label="Select page"
->
+  >
 </mat-paginator>
+</ng-container>
