@@ -52,6 +52,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   onTableAction(e: any): void {
     console.log(e);
     this.action.emit(e);
+
+    // Delete 
     if(e.name == 'delete'){
       Swal.fire({
         title: 'Are you sure?',
@@ -94,28 +96,6 @@ export class TableComponent implements OnInit, AfterViewInit {
   // Update
   // update(e:any){
   //   console.log(e)
-  // }
-
-  // delete
-  // delete(){
-  //   Swal.fire({
-  //     title: 'Are you sure?',
-  //     text: "You won't be able to revert this!",
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'Yes, delete it!'
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       // ---------
-  //       this.dataSource._data._value.splice(0,1)
-  //       this.dataSource._data._value = this.dataSource._data._value;
-  //       this.dataShow()
-  //       // ---------
-  //     }
-  //   })
-
   // }
 
   // setName(e:any){

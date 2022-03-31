@@ -17,7 +17,6 @@ export class ActionsItemsComponent implements OnInit {
 
   @Input() value: any;
   
-  // ------
   @Output() buttonAction: EventEmitter<TableButtonAction> = new EventEmitter<TableButtonAction>()
 
   onEditClick() {
