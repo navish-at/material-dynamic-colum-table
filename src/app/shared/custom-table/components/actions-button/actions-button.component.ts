@@ -8,7 +8,7 @@ import { TableConsts } from './conts/table';
   templateUrl: './actions-button.component.html',
   styleUrls: ['./actions-button.component.scss']
 })
-export class ActionsButtonComponent implements OnInit {
+export class ActionsItemsComponent implements OnInit {
 
   constructor() { }
 

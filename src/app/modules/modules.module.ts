@@ -5,8 +5,6 @@ import { ModulesRoutingModule } from './modules-routing.module';
 import { TestComponent } from './test/test.component';
 import { CustomTableModule } from '../shared/custom-table/custom-table.module';
 import { CategoryListComponent } from './category-list/category-list.component';
-import { ActionsButtonComponent } from '../shared/custom-table/components/actions-button/actions-button.component';
-
 @NgModule({
   declarations: [
     TestComponent,
