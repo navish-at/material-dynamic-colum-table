@@ -6,7 +6,7 @@ import { MatSort, Sort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import Swal from "sweetalert2";
 import { SelectionModel } from "@angular/cdk/collections";
-import { TableButtonAction } from "../../models/tableButtonAction";
+import { TableButtonAction } from "./const/tableButtonAction";
 @Component({
   selector: "app-table",
   templateUrl: "./table.component.html",

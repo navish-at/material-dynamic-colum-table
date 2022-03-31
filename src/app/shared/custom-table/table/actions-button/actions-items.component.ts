@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { TableButtonAction } from 'src/app/shared/models/tableButtonAction';
-import { TableConsts } from './conts/table';
+import { TableButtonAction } from '../const/tableButtonAction';
+import { ActionItems } from './table';
 
 @Component({
   selector: '[app-actions-items]',
@@ -17,15 +17,15 @@ export class ActionsItemsComponent  {
 
   onEditClick() {
     this.buttonAction.emit({
-      name: TableConsts.actionButton.edit,
+      name: ActionItems.actionButton.edit,
       value: this.value,
     })
   }
   onDeleteClick() {
-    this.buttonAction.emit({ name: TableConsts.actionButton.delete });
+    this.buttonAction.emit({ name: ActionItems.actionButton.delete });
   }
   onViewClick() {
-    this.buttonAction.emit({ name: TableConsts.actionButton.view });
+    this.buttonAction.emit({ name: ActionItems.actionButton.view });
   }
 
 }

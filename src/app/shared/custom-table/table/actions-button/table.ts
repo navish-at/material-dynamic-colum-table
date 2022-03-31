@@ -1,4 +1,4 @@
-export const TableConsts = {
+export const ActionItems = {
     actionButton: {
       edit: 'edit',
       delete: 'delete',
