@@ -49,9 +49,13 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   // Get value of action element(button)
-  onTableAction(e: any): void {
-    console.log(e);
+  onTableAction(e: any, data:any): void {
     this.action.emit(e);
+    console.log(data);
+    
+
+    // localStorage.setItem('actionData',data)
+
 
     // Delete 
     if(e.name == 'delete'){
@@ -66,13 +70,16 @@ export class TableComponent implements OnInit, AfterViewInit {
       }).then((result) => {
         if (result.isConfirmed) {
           // ---------
-          this.dataSource._data._value.splice(0,1)
-          this.dataSource._data._value = this.dataSource._data._value;
-          // ---------
+          console.log(this.dataSource._data._value);
+          for (let i of this.dataSource._data._value) {
+            if(data.phone === i.phone){
+              this.dataSource._data._value.splice(0,1)
+            }
+          }
         }
       })
     }
-  }
+  };
 
   /** Announce the change in sort state for assistive technology. */
   // This example uses English messages. If your application supports
@@ -85,26 +92,11 @@ export class TableComponent implements OnInit, AfterViewInit {
     } else {
       this._liveAnnouncer.announce("Sorting cleared");
     }
-  }
+  };
 
   // For filter
   applyFilter(e: Event) {
     const filterValue = (e.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
-  }
-
-  // Update
-  // update(e:any){
-  //   console.log(e)
-  // }
-
-  // setName(e:any){
-  //   this.name =  e.target.innerHTML;
-  //   console.log(this.name)
-  // }
-
-  // setWeight(e:any){
-  //   this.weight = e.target.innerHTML;
-  //   console.log(this.weight);
-  // }
+  };
 }

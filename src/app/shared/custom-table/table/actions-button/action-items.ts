@@ -1,8 +1,8 @@
 export const ActionItems = {
-    actionButton: {
+  actionItem: {
       edit: 'edit',
       delete: 'delete',
-      view: 'delete',
+      view: 'view',
     },
   }
   

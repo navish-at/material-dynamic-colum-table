@@ -37,7 +37,7 @@
         mat-cell
         *matCellDef="let row"
         app-actions-items
-        (buttonAction)="onTableAction($event)"
+        (buttonAction)="onTableAction($event,row)"
       ></td>
     </ng-container>
 

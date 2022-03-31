@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TableButtonAction } from '../const/tableButtonAction';
-import { ActionItems } from './table';
+import { ActionItems } from './action-items';
 
 @Component({
   selector: '[app-actions-items]',
@@ -8,28 +8,29 @@ import { ActionItems } from './table';
   styleUrls: ['./actions-items.component.scss']
 })
 export class ActionsItemsComponent  {
-
-  constructor() { }
-
-  @Input() value: any;
-  
+  valueAction: any;
   @Output() buttonAction: EventEmitter<TableButtonAction> = new EventEmitter<TableButtonAction>();
 
+  constructor() { 
+  }
+ 
+  //  Emitting data for edit
   onEditClick() {
     this.buttonAction.emit({
-      name: ActionItems.actionButton.edit,
-      value: this.value,
+      name: ActionItems.actionItem.edit,
+      value: this.valueAction,
     })
-  }
+  };
+  
+  //  Emitting data for delete
   onDeleteClick() {
-    this.buttonAction.emit({ name: ActionItems.actionButton.delete });
-  }
+    this.buttonAction.emit({ name: ActionItems.actionItem.delete });
+  };
+  
+  //  Emitting data for view
   onViewClick() {
-    this.buttonAction.emit({ name: ActionItems.actionButton.view });
-  }
+    this.buttonAction.emit({ name: ActionItems.actionItem.view });
+  };
 
-}
-function editButton(editButton: any) {
-  return true;
 }
 
