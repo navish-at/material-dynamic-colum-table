@@ -20,4 +20,4 @@ import { ActionsButtonComponent } from './components/actions-button/actions-butt
     ActionsButtonComponent
   ]
 })
-export class CommonTableModule { }
+export class CustomTableModule { }

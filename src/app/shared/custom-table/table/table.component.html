@@ -1,0 +1,55 @@
+<mat-grid-list cols="1" class="px">
+  <form class="example-form d-flex">
+    <ng-container *ngIf="showSearch">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input
+          matInput
+          type="text"
+          (keyup)="applyFilter($event)"
+          placeholder="Searching"
+        />
+      </mat-form-field>
+    </ng-container>
+  </form>
+
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8"
+    matSort
+    (matSortChange)="announceSortChange($event)"
+  >
+  <!-- Data Column -->
+    <ng-container
+      *ngFor="let column of columns"
+      [matColumnDef]="column.columnDef"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ column.header }}
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row[column.columnDef] }}</td>
+    </ng-container>
+
+    <!-- Symbol Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+      <td
+        mat-cell
+        *matCellDef="let row"
+        app-actions-button
+        (buttonAction)="onTableAction($event)"
+      ></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: displayedColumns"></tr>
+  </table>
+</mat-grid-list>
+
+<mat-paginator
+  [length]="18"
+  [pageSize]="10"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  aria-label="Select page"
+>
+</mat-paginator>

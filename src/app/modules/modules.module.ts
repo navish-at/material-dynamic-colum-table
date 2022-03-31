@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { ModulesRoutingModule } from './modules-routing.module';
 import { TestComponent } from './test/test.component';
-import { CommonTableModule } from '../shared/common-table/common-table.module';
+import { CustomTableModule } from '../shared/custom-table/custom-table.module';
 import { CategoryListComponent } from './category-list/category-list.component';
-import { ActionsButtonComponent } from '../shared/common-table/components/actions-button/actions-button.component';
+import { ActionsButtonComponent } from '../shared/custom-table/components/actions-button/actions-button.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { ActionsButtonComponent } from '../shared/common-table/components/action
   imports: [
     CommonModule,
     ModulesRoutingModule,
-    CommonTableModule
+    CustomTableModule
   ]
 })
 export class ModulesModule { }
