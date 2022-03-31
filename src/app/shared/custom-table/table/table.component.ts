@@ -1,11 +1,9 @@
-import { LiveAnnouncer } from "@angular/cdk/a11y";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { AfterViewInit, ViewChild } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
-import { MatSort, Sort } from "@angular/material/sort";
+import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import Swal from "sweetalert2";
-import { SelectionModel } from "@angular/cdk/collections";
 import { TableButtonAction } from "./const/tableButtonAction";
 @Component({
   selector: "app-table",
@@ -13,7 +11,6 @@ import { TableButtonAction } from "./const/tableButtonAction";
   styleUrls: ["./table.component.scss"],
 })
 export class TableComponent implements OnInit, AfterViewInit {
-  obj: any = {};
   @Input() showPagination: boolean = false;
   @Input() showSearch: boolean = false;
   @Input() columns: any = [];
@@ -24,12 +21,11 @@ export class TableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) set matPaginator(paginator: MatPaginator) {
     this.dataSource.paginator = paginator;
   }
+  objEmit: any = {};
   dataSource: any;
-  selection = new SelectionModel<any>(true, []);
   displayedColumns: string[] = [];
-  value: string = "";
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
+  constructor() {}
 
   ngOnInit(): void {
     // Set table columns
@@ -42,7 +38,6 @@ export class TableComponent implements OnInit, AfterViewInit {
 
     // For pagination, sorting and filter
     this.dataSource = new MatTableDataSource<any>(this.tableData);
-
   }
 
   ngAfterViewInit() {
@@ -53,8 +48,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   onTableAction(e: any, data: any): void {
     // Edit
     if (e.name == "edit") {
-      this.obj = { event: e, data: data };
-      this.action.emit(this.obj);
+      this.objEmit = { event: e, data: data };
+      this.action.emit(this.objEmit);
     }
     // Delete
     else if (e.name == "delete") {
@@ -67,15 +62,15 @@ export class TableComponent implements OnInit, AfterViewInit {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          this.obj = { event: e, data: data };
-          this.action.emit(this.obj);
+          this.objEmit = { event: e, data: data };
+          this.action.emit(this.objEmit);
         }
       });
     }
     // View
     else if (e.name == "view") {
-      this.obj = { event: e, data: data };
-      this.action.emit(this.obj);
+      this.objEmit = { event: e, data: data };
+      this.action.emit(this.objEmit);
     }
   }
 
