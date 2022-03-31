@@ -33,6 +33,7 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
       <td
+        [showAction]="true"
         mat-cell
         *matCellDef="let row"
         app-actions-items

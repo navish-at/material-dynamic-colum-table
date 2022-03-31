@@ -84,5 +84,4 @@ columns = [
     console.log(e.data)
   }
 
- 
 }

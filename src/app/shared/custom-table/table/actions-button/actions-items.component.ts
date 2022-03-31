@@ -13,7 +13,7 @@ export class ActionsItemsComponent  {
   constructor() { }
 
   @Input() value: any;
-  
+  @Input() showAction:boolean = false;
   @Output() buttonAction: EventEmitter<TableButtonAction> = new EventEmitter<TableButtonAction>();
 
   //  Emitting data for edit
