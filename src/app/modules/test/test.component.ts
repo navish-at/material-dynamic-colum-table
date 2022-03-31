@@ -9,7 +9,7 @@ data:any = [];
 nameSelect:any = [];
 dataEmployee:any=[];
 editButton:boolean = true;
-columns = [ 
+columns = [
   { columnDef: 'name', header: 'Name' },
   { columnDef: 'company', header: 'Company' },
   { columnDef: 'city', header: 'City' },
@@ -78,8 +78,10 @@ columns = [
     ];
   }
 
-  onTableAction(e:any, data:any) {
-    console.log(e, data)
+  // Get value for deleting and updating
+  onTableAction(e:any) {
+    console.log(e.event)
+    console.log(e.data)
   }
 
  

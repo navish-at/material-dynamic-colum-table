@@ -13,6 +13,7 @@ import { TableButtonAction } from "./const/tableButtonAction";
   styleUrls: ["./table.component.scss"],
 })
 export class TableComponent implements OnInit, AfterViewInit {
+  obj:any ={};
   @Input() showPagination: boolean = false;
   @Input() showSearch: boolean = false;
   @Input() columns: any = [];
@@ -49,48 +50,32 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   // Get value of action element(button)
-  onTableAction(e: any, data:any): void {
-    this.action.emit(e);
-    console.log(data);
-    
-
-    // localStorage.setItem('actionData',data)
-
-
+  onTableAction(e: any, data:any): void {   
+    // Edit 
+    if(e.name == 'edit'){
+      this.obj = {event: e, data: data};
+      this.action.emit(this.obj);  
+    }
     // Delete 
-    if(e.name == 'delete'){
+    else if(e.name == 'delete'){
       Swal.fire({
         title: 'Are you sure?',
-        text: "You won't be able to revert this!",
         icon: 'warning',
+        cancelButtonColor: '#d33',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
-        if (result.isConfirmed) {
-          // ---------
-          console.log(this.dataSource._data._value);
-          for (let i of this.dataSource._data._value) {
-            if(data.phone === i.phone){
-              this.dataSource._data._value.splice(0,1)
-            }
+          if (result.isConfirmed) {
+            this.obj = {event: e, data: data};
+            this.action.emit(this.obj); 
           }
-        }
-      })
+        }) 
     }
-  };
-
-  /** Announce the change in sort state for assistive technology. */
-  // This example uses English messages. If your application supports
-  // multiple language, you would internationalize these strings.
-  // Furthermore, you can customize the message to add additional
-  // details about the values being sorted.
-  announceSortChange(sortState: Sort) {
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce("Sorting cleared");
+    // View
+    else if(e.name == 'view'){
+      this.obj = {event: e, data: data};
+            this.action.emit(this.obj); 
     }
   };
 

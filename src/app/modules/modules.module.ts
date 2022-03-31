@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ModulesRoutingModule } from './modules-routing.module';
 import { TestComponent } from './test/test.component';
 import { CustomTableModule } from '../shared/custom-table/custom-table.module';

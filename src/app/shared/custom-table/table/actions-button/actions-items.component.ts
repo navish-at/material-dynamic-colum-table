@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TableButtonAction } from '../const/tableButtonAction';
+// import { ActionItems } from './table';
 import { ActionItems } from './action-items';
 
 @Component({
@@ -8,17 +9,18 @@ import { ActionItems } from './action-items';
   styleUrls: ['./actions-items.component.scss']
 })
 export class ActionsItemsComponent  {
-  valueAction: any;
+
+  constructor() { }
+
+  @Input() value: any;
+  
   @Output() buttonAction: EventEmitter<TableButtonAction> = new EventEmitter<TableButtonAction>();
 
-  constructor() { 
-  }
- 
   //  Emitting data for edit
   onEditClick() {
     this.buttonAction.emit({
       name: ActionItems.actionItem.edit,
-      value: this.valueAction,
+      value: this.value,
     })
   };
   
