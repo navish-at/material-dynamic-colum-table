@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { TestComponent } from 'src/app/modules/test/test.component';
 import { TableButtonAction } from 'src/app/shared/models/tableButtonAction';
 import { TableConsts } from './conts/table';
 
@@ -8,16 +7,13 @@ import { TableConsts } from './conts/table';
   templateUrl: './actions-items.component.html',
   styleUrls: ['./actions-items.component.scss']
 })
-export class ActionsItemsComponent implements OnInit {
+export class ActionsItemsComponent  {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
   @Input() value: any;
   
-  @Output() buttonAction: EventEmitter<TableButtonAction> = new EventEmitter<TableButtonAction>()
+  @Output() buttonAction: EventEmitter<TableButtonAction> = new EventEmitter<TableButtonAction>();
 
   onEditClick() {
     this.buttonAction.emit({
@@ -26,10 +22,10 @@ export class ActionsItemsComponent implements OnInit {
     })
   }
   onDeleteClick() {
-    this.buttonAction.emit({ name: TableConsts.actionButton.delete })
+    this.buttonAction.emit({ name: TableConsts.actionButton.delete });
   }
   onViewClick() {
-    this.buttonAction.emit({ name: TableConsts.actionButton.view })
+    this.buttonAction.emit({ name: TableConsts.actionButton.view });
   }
 
 }
